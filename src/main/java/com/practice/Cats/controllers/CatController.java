@@ -13,8 +13,8 @@ public class CatController {
     CatDAO catDao;
 
     @PostMapping("") //get request
-    public Cat add(@RequestParam String content){
-        Cat cat = new Cat(content);
+    public Cat add(@RequestParam String name){
+        Cat cat = new Cat(name);
         return catDao.save(cat);
     }
 
@@ -52,9 +52,11 @@ public class CatController {
     }
 
     @PutMapping("/{id}")
-    public Cat update(@PathVariable int id, @RequestParam String content){
+    public Cat update(@PathVariable int id, @RequestParam String name){
         Cat cat = catDao.findOne(id);
-        cat.setName(content);
+        cat.setName(name);
         return catDao.save(cat);
     }
+
+
 }
